@@ -1,4 +1,3 @@
-import PropTypes from 'prop-types';
 import React from "react";
 import { withStyles } from "@material-ui/core/styles";
 import {
@@ -11,10 +10,6 @@ import {
   CardMedia,
 } from "@material-ui/core";
 import AddCircleIcon from "@material-ui/icons/AddCircle";
-
-const propTypes = {};
-
-const defaultProps = {};
 
 const styles = (theme) => ({
   root: {
@@ -46,7 +41,7 @@ class ProductCard extends React.Component {
  
 
   render() {
-     const { classes, theme, info, addcart } = this.props;
+     const { classes, info, addcart } = this.props;
 
     return (
       <React.Fragment>
@@ -82,8 +77,5 @@ class ProductCard extends React.Component {
     );
   }
 }
-
- ProductCard.propTypes = propTypes;
- ProductCard.defaultProps = defaultProps;
 
 export default withStyles(styles, { withTheme: true })(ProductCard);

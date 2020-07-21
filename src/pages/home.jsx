@@ -1,7 +1,6 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import { withStyles } from "@material-ui/core/styles";
-import { Container, Typography, Grid,Paper } from "@material-ui/core";
-import axios from "axios";
+import { Container, Typography, Grid } from "@material-ui/core";
 import PageLayout from "../components/pageLayout";
 import ProductCard from "../components/productCard";
 
@@ -53,7 +52,7 @@ class Home extends React.Component {
       .catch((error) => this.setState({ isLoading: false }));
   }
   render() {
-    const { classes, theme } = this.props;
+    const { classes} = this.props;
     const { products, isLoading } = this.state;
 
     return (

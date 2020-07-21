@@ -7,7 +7,6 @@ import {
   Toolbar,
   Menu,
   IconButton,
-  Fade,
 } from "@material-ui/core";
 import MenuIcon from "@material-ui/icons/Menu";
 
