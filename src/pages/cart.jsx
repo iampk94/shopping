@@ -63,7 +63,7 @@ class Cart extends React.Component {
           </Typography>
           <Grid container spacing={3}>
             {productItems}
-            <Grid item xs={4}>
+            <Grid item xs={12} sm={4}>
               <Paper className={classes.totalPrice}>
                 <Typography variant="h4">
                   Total:{total.toLocaleString("en-IN")} ₹

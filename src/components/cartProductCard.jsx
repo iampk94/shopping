@@ -14,12 +14,18 @@ const styles = (theme) => ({
   productInfoWrapper: {
     display: "flex",
     padding: "1rem",
+    "@media (max-width:600px)": {
+      flexDirection: "column",
+    },
   },
   productImage: {
     minWidth: 345,
     display: "flex",
     justifyContent: "center",
     alignItems: "center",
+    "@media (max-width:600px)": {
+      minWidth: "100%",
+    },
   },
 });
 
