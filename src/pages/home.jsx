@@ -1,8 +1,15 @@
 import React from "react";
+import PropTypes from "prop-types";
+import { connect } from "react-redux";
+import compose from "recompose/compose";
+
 import { withStyles } from "@material-ui/core/styles";
 import { Container, Typography, Grid } from "@material-ui/core";
+
 import PageLayout from "../components/pageLayout";
 import ProductCard from "../components/productCard";
+
+import { fetchProducts, addToCart } from "../actions/actions";
 
 const propTypes = {};
 
@@ -11,6 +18,7 @@ const defaultProps = {};
 const styles = (theme) => ({
   pageContainer: {
     padding: theme.spacing(2),
+    minHeight: "70vh",
   },
   title: {
     display: "flex",
@@ -22,38 +30,41 @@ const styles = (theme) => ({
     },
   },
   loadingInfo: {
-    padding: theme.spacing(0.5),
-    textAlign: "center",
+    paddingTop: 100,
+    display: "flex",
+    justifyContent: "center",
+    alignItems: "center",
   },
 });
 
 class Home extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      isLoading: true,
-      products: [],
-      cart: 0,
-    };
-  }
-  productAddCart = () =>{
-       alert("Hello!");
-  }
   
-  componentDidMount() {
-    fetch(`https://shopping-cart-demo-api.herokuapp.com/products`)
-      .then((response) => response.json())
-      .then((data) =>
-        this.setState({
-          products: data,
-          isLoading: false,
-        })
-      )
-      .catch((error) => this.setState({ isLoading: false }));
+  componentWillMount(){
+    this.props.fetchProducts();
   }
+
   render() {
-    const { classes} = this.props;
-    const { products, isLoading } = this.state;
+    console.log("get props",this.props)
+    
+    const { classes,products } = this.props;
+    const productItems =
+      products.length !== 0 ? (
+        products.map((product) => (
+          <Grid item xs={12} sm={6} md={6} lg={4} key={product.id}>
+            <ProductCard
+              info={product}
+              addcart={() => this.props.addToCart(product.partId)}
+            />
+          </Grid>
+        ))
+      ) : (
+        <Grid item xs={12}>
+          <Typography variant="h3" className={classes.loadingInfo}>
+            Products are loading
+          </Typography>
+        </Grid>
+      );
+    
 
     return (
       <PageLayout>
@@ -62,19 +73,7 @@ class Home extends React.Component {
             Products
           </Typography>
           <Grid container spacing={3}>
-            {!isLoading ? (
-              products.map((item, index) => (
-                <Grid item xs={12} sm={6} md={6} lg={4} key={index}>
-                  <ProductCard info={item} addcart={this.productAddCart} />
-                </Grid>
-              ))
-            ) : (
-              <Grid item xs={12}>
-                <Typography variant="h5" className={classes.loadingInfo}>
-                  Loading Data
-                </Typography>
-              </Grid>
-            )}
+            {productItems}
           </Grid>
         </Container>
       </PageLayout>
@@ -82,7 +81,19 @@ class Home extends React.Component {
   }
 }
 
-Home.propTypes = propTypes;
-Home.defaultProps = defaultProps;
+const mapStateToProps = (state)=>{
+    return {
+      products: state.products.allProducts
+    }
+  }
+const mapDispatchToProps = dispatch => {
+  return {
+    addToCart: (id) => dispatch(addToCart(id)),
+    fetchProducts : ()=>dispatch(fetchProducts())
+  };
+}
 
-export default withStyles(styles, { withTheme: true })(Home);
+export default compose(
+  withStyles(styles, { withTheme: true }),
+  connect(mapStateToProps,  mapDispatchToProps)
+)(Home);

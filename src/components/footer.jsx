@@ -1,12 +1,16 @@
 import React from "react";
 import { makeStyles } from "@material-ui/core/styles";
-import { Grid ,Typography } from "@material-ui/core";
+import { Grid, Typography } from "@material-ui/core";
 
 const useStyles = makeStyles((theme) => ({
   root: {
+    minHeight:"18vh",
     flexGrow: 1,
     padding: "1rem 4rem",
     background: "#363636",
+    "@media (max-width:600px)": {
+      textAlign:"center"
+    },
   },
   paper: {
     color: "#fff",
@@ -14,12 +18,12 @@ const useStyles = makeStyles((theme) => ({
   title: {
     textTransform: "uppercase",
   },
-  footerInfo:{
+  footerInfo: {
     color: "#fff",
-    textAlign:"center",
+    textAlign: "center",
     paddingTop: "2rem",
-    fontSize:"1.5rem"
-  }
+    fontSize: "1.5rem",
+  },
 }));
 
 const Footer = () => {

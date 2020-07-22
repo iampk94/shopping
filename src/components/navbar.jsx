@@ -9,6 +9,7 @@ import {
   IconButton,
 } from "@material-ui/core";
 import MenuIcon from "@material-ui/icons/Menu";
+import { connect } from "react-redux";
 
 const useStyles = makeStyles((theme) => ({
   mainNav: {
@@ -65,7 +66,7 @@ const useViewport = () => {
   return { width };
 };
 
-const Navbar = () => {
+const Navbar = (props) => {
   const classes = useStyles();
   const { width } = useViewport();
   const breakpoint = 600;
@@ -110,7 +111,7 @@ const handleClose = () => {
                   className={classes.mobileMenuLink}
                   onClick={handleClose}
                 >
-                  Cart (5)
+                  Cart ({props.addedProducts.length})
                 </Link>
               </Menu>
             </div>
@@ -120,7 +121,7 @@ const handleClose = () => {
                 Products
               </Link>
               <Link to="/cart" className={classes.menuLink}>
-                Cart (5)
+                Cart ({props.addedProducts.length})
               </Link>
             </>
           )}
@@ -130,4 +131,12 @@ const handleClose = () => {
   );
 };
 
-export default Navbar;
+
+const mapStateToProps = (state)=>{
+    return {
+      addedProducts: state.products.addedProducts,
+    };
+  }
+
+
+export default connect(mapStateToProps)(Navbar);
