@@ -4,16 +4,17 @@ import { Grid, Typography } from "@material-ui/core";
 
 const useStyles = makeStyles((theme) => ({
   root: {
-    minHeight:"18vh",
+    minHeight: "18vh",
     flexGrow: 1,
-    padding: "1rem 4rem",
+    padding: "1rem",
     background: "#363636",
     "@media (max-width:600px)": {
-      textAlign:"center"
+      textAlign: "center",
     },
   },
   paper: {
     color: "#fff",
+    textAlign: "center",
   },
   title: {
     textTransform: "uppercase",
@@ -24,6 +25,11 @@ const useStyles = makeStyles((theme) => ({
     paddingTop: "2rem",
     fontSize: "1.5rem",
   },
+  footerContent: {
+    display: "flex",
+    justifyContent: "center",
+    alignItems: "center",
+  },
 }));
 
 const Footer = () => {
@@ -32,7 +38,7 @@ const Footer = () => {
   return (
     <div className={classes.root}>
       <Grid container>
-        <Grid item xs={12} sm={6}>
+        <Grid item xs={12} sm={6} className={classes.footerContent}>
           <div className={classes.paper}>
             <Typography variant="h6" className={classes.title}>
               contact us
@@ -42,7 +48,7 @@ const Footer = () => {
             </Typography>
           </div>
         </Grid>
-        <Grid item xs={12} sm={6}>
+        <Grid item xs={12} sm={6} className={classes.footerContent}>
           <div className={classes.paper}>
             <Typography variant="h6" className={classes.title}>
               return policy
