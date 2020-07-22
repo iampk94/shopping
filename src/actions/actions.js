@@ -8,7 +8,7 @@ import {
 
 // fetch all products
 export const fetchProducts = () => dispatch => {
-    console.log("fetching")
+    // console.log("fetching")
   fetch("https://shopping-cart-demo-api.herokuapp.com/products")
     .then((res) => res.json())
     .then(

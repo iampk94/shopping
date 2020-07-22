@@ -44,7 +44,7 @@ class Home extends React.Component {
   }
 
   render() {
-    console.log("get props",this.props)
+    // console.log("get props",this.props)
     
     const { classes,products } = this.props;
     const productItems =

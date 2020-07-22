@@ -39,7 +39,7 @@ const styles = (theme) => ({
 
 class Cart extends React.Component {
   render() {
-    console.log("card props", this.props.addedProducts);
+    // console.log("card props", this.props.addedProducts);
 
     const { classes, addedProducts, total } = this.props;
     const productItems =

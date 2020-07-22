@@ -91,10 +91,10 @@ export default function (state = initialState, action) {
 
 
     case SUB_PRODUCT_COUNT:
-      console.log("sub count", state.addedProducts, state.allProducts,action.id);
+      // console.log("sub count", state.addedProducts, state.allProducts,action.id);
       let addedItem2 = state.allProducts.find((item) => item.partId === action.id);
       
-      console.log("after sub count",addedItem2,action.id);
+      // console.log("after sub count",addedItem2,action.id);
 
       //if the qt == 0 then it should be removed
       if (addedItem2.quantity === 1) {
